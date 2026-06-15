@@ -2,8 +2,9 @@
 const SETTINGS = {
   girlfriendName: "My Love Sondos",
   senderName: "Mohamed",
+  // This is where the automatic date-choice notification will arrive.
   recipientEmail: "tito.ateaf55@gmail.com",
-  emailSubject: "My choices for our date night",
+  notificationSubject: "New date-night choices!",
   invitationMessage:
     "I would love to make another beautiful memory with you. You choose the details, and I will take care of the rest."
 };
@@ -20,8 +21,6 @@ const selections = {
   food: "",
   film: ""
 };
-
-let emailUrl = "";
 
 function applySettings() {
   document.querySelectorAll("[data-girlfriend-name]").forEach((element) => {
@@ -151,31 +150,10 @@ function formatDateAndTime() {
   }).format(selectedDate);
 }
 
-function buildEmailUrl() {
-  const when = formatDateAndTime();
-  const food = getChoice("food");
-  const film = getChoice("film");
-  const body = [
-    `Hi ${SETTINGS.senderName}!`,
-    "",
-    "I picked our date night:",
-    `Date and time: ${when}`,
-    `Food: ${food}`,
-    `Film: ${film}`,
-    "",
-    "I can't wait! ♥"
-  ].join("\n");
-
-  const subject = encodeURIComponent(SETTINGS.emailSubject);
-  return `mailto:${SETTINGS.recipientEmail}?subject=${subject}&body=${encodeURIComponent(body)}`;
-}
-
 function showSummary() {
   document.querySelector("#summary-when").textContent = formatDateAndTime();
   document.querySelector("#summary-food").textContent = getChoice("food");
   document.querySelector("#summary-film").textContent = getChoice("film");
-  emailUrl = buildEmailUrl();
-
   planner.hidden = true;
   summaryScreen.hidden = false;
   summaryScreen.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -194,17 +172,47 @@ document.querySelector("#edit-choices").addEventListener("click", () => {
   planner.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
-function openEmail() {
-  window.location.href = emailUrl;
-  window.setTimeout(() => {
+async function sendChoices() {
+  const button = document.querySelector("#confirm-date");
+  const status = document.querySelector("#submit-status");
+
+  button.disabled = true;
+  button.textContent = "Sending your choices...";
+  status.textContent = "";
+
+  const submission = new FormData();
+  submission.append("_subject", SETTINGS.notificationSubject);
+  submission.append("_template", "table");
+  submission.append("Date and time", formatDateAndTime());
+  submission.append("Food", getChoice("food"));
+  submission.append("Film", getChoice("film"));
+  submission.append("Invitation for", SETTINGS.girlfriendName);
+
+  try {
+    const response = await fetch(
+      `https://formsubmit.co/ajax/${SETTINGS.recipientEmail}`,
+      {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: submission
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Notification request failed.");
+    }
+
     summaryScreen.hidden = true;
     confirmationScreen.hidden = false;
     confirmationScreen.scrollIntoView({ behavior: "smooth", block: "center" });
-  }, 500);
+  } catch (error) {
+    status.textContent = "Could not send the choices. Please check the internet connection and try again.";
+    button.disabled = false;
+    button.textContent = "Confirm our date ♥";
+  }
 }
 
-document.querySelector("#send-email").addEventListener("click", openEmail);
-document.querySelector("#email-again").addEventListener("click", openEmail);
+document.querySelector("#confirm-date").addEventListener("click", sendChoices);
 
 photo.addEventListener("error", () => {
   photo.classList.add("is-missing");

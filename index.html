@@ -20,7 +20,7 @@
     <section class="hero" aria-labelledby="page-title">
       <div class="eyebrow">A little invitation</div>
       <div class="photo-frame">
-        <img id="couple-photo" src="assets/couple-photo.jpg" alt="A favorite memory of us">
+        <img id="couple-photo" src="assets/couple-photo.PNG" alt="A favorite memory of us">
         <div class="photo-fallback" aria-hidden="true">
           <span>♥</span>
           <small>Add our favorite photo</small>
@@ -127,7 +127,8 @@
           <div><dt>Food</dt><dd id="summary-food"></dd></div>
           <div><dt>Film</dt><dd id="summary-film"></dd></div>
         </dl>
-        <button class="primary-button" id="send-email" type="button">Send my choices by email</button>
+        <button class="primary-button" id="confirm-date" type="button">Confirm our date ♥</button>
+        <p class="submit-status" id="submit-status" role="alert"></p>
         <button class="text-button" id="edit-choices" type="button">Wait, let me change something</button>
       </div>
     </section>
@@ -135,9 +136,8 @@
     <section class="confirmation-screen" id="confirmation-screen" aria-live="polite" hidden>
       <div class="confirmation-card">
         <span aria-hidden="true">♥</span>
-        <h2>Your email is ready!</h2>
-        <p>Send it from your email app, and our date is officially on its way.</p>
-        <button class="text-button" id="email-again" type="button">Open the email again</button>
+        <h2>Our date is confirmed!</h2>
+        <p>Your choices have been sent. Now all that is left is to look forward to our date.</p>
       </div>
     </section>
   </main>

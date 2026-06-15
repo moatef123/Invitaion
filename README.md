@@ -13,14 +13,17 @@ const SETTINGS = {
   girlfriendName: "Her Name",
   senderName: "Your Name",
   recipientEmail: "you@example.com",
-  emailSubject: "My choices for our date night",
+  notificationSubject: "New date-night choices!",
   invitationMessage: "Your personal message here."
 };
 ```
 
-Replace `assets/couple-photo.jpg` with your own photo. Use that exact filename,
-or update the image path in `index.html`. A styled placeholder appears if the
-photo is missing.
+Put your photo in the `assets` folder and rename it exactly:
+
+`couple-photo.PNG`
+
+The complete path is `assets/couple-photo.PNG`. A styled placeholder appears
+if the photo is missing.
 
 Food and film cards can be changed directly in `index.html`. Keep a unique
 `data-value` on each card.
@@ -47,8 +50,14 @@ Then visit `http://localhost:8000`.
 6. GitHub will show the public link when deployment finishes. It normally looks
    like `https://YOUR-USERNAME.github.io/REPOSITORY-NAME/`.
 
-## How replies work
+## Activate email notifications
 
-The final button uses a `mailto:` link. It opens the visitor's configured email
-app with the date-night choices filled in. She must still press **Send** in that
-app. No form data is stored by this website.
+The final button automatically sends the choices to the `recipientEmail`
+configured in `script.js`, using FormSubmit.
+
+1. Publish the website and make one test submission yourself.
+2. FormSubmit will send an activation message to your email the first time.
+3. Open that email and approve the form.
+4. Test the website again. New choices will then arrive automatically.
+
+Your girlfriend stays on the website and does not need to open an email app.
