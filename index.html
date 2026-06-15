@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff7f3">
+  <meta name="description" content="A little invitation for a very special date night.">
+  <title>Our Next Date</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient-heart heart-one" aria-hidden="true">♥</div>
+  <div class="ambient-heart heart-two" aria-hidden="true">♥</div>
+  <div class="ambient-heart heart-three" aria-hidden="true">♥</div>
+
+  <main class="page-shell">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="eyebrow">A little invitation</div>
+      <div class="photo-frame">
+        <img id="couple-photo" src="assets/couple-photo.jpg" alt="A favorite memory of us">
+        <div class="photo-fallback" aria-hidden="true">
+          <span>♥</span>
+          <small>Add our favorite photo</small>
+        </div>
+      </div>
+      <p class="for-you">For <span data-girlfriend-name>My Love</span></p>
+      <h1 id="page-title">Will you go on a<br><em>date with me?</em></h1>
+      <p class="hero-copy" data-invitation-message>
+        I would love to make another beautiful memory with you. You choose the details, and I will take care of the rest.
+      </p>
+      <a class="primary-button" href="#date-form">Plan our date <span aria-hidden="true">↓</span></a>
+      <p class="signature">With love, <span data-sender-name>Your Name</span></p>
+    </section>
+
+    <section class="planner" id="date-form" aria-labelledby="planner-title">
+      <div class="section-heading">
+        <span class="step-label">Our little plan</span>
+        <h2 id="planner-title">Pick your favorites</h2>
+        <p>There are no wrong answers. This night is all about us.</p>
+      </div>
+
+      <form id="invitation-form" novalidate>
+        <fieldset class="form-section">
+          <legend><span>01</span> When shall I steal you away?</legend>
+          <div class="date-time-grid">
+            <label class="input-group">
+              <span>Date</span>
+              <input type="date" id="date" name="date" required>
+            </label>
+            <label class="input-group">
+              <span>Time</span>
+              <input type="time" id="time" name="time" required>
+            </label>
+          </div>
+          <p class="error-message" id="date-time-error" role="alert"></p>
+        </fieldset>
+
+        <fieldset class="form-section" data-choice-group="food">
+          <legend><span>02</span> What should we eat?</legend>
+          <div class="choice-grid">
+            <button class="choice-card" type="button" data-value="Pizza">
+              <span class="choice-icon">🍕</span><strong>Pizza</strong><small>Cozy &amp; classic</small>
+            </button>
+            <button class="choice-card" type="button" data-value="Sushi">
+              <span class="choice-icon">🍣</span><strong>Sushi</strong><small>A little fancy</small>
+            </button>
+            <button class="choice-card" type="button" data-value="Burgers">
+              <span class="choice-icon">🍔</span><strong>Burgers</strong><small>Fun &amp; delicious</small>
+            </button>
+            <button class="choice-card" type="button" data-value="Pasta">
+              <span class="choice-icon">🍝</span><strong>Pasta</strong><small>Romantic comfort</small>
+            </button>
+            <button class="choice-card custom-card" type="button" data-value="custom">
+              <span class="choice-icon">✨</span><strong>Your choice</strong><small>Surprise me</small>
+            </button>
+          </div>
+          <label class="custom-input" id="food-custom-wrap" hidden>
+            <span>What are you craving?</span>
+            <input type="text" id="food-custom" maxlength="80" placeholder="Type your favorite food...">
+          </label>
+          <p class="error-message" id="food-error" role="alert"></p>
+        </fieldset>
+
+        <fieldset class="form-section" data-choice-group="film">
+          <legend><span>03</span> What shall we watch?</legend>
+          <div class="choice-grid">
+            <button class="choice-card" type="button" data-value="Comedy">
+              <span class="choice-icon">😂</span><strong>Comedy</strong><small>Laugh together</small>
+            </button>
+            <button class="choice-card" type="button" data-value="Romance">
+              <span class="choice-icon">💕</span><strong>Romance</strong><small>Love on screen</small>
+            </button>
+            <button class="choice-card" type="button" data-value="Action">
+              <span class="choice-icon">🔥</span><strong>Action</strong><small>Something exciting</small>
+            </button>
+            <button class="choice-card" type="button" data-value="Horror">
+              <span class="choice-icon">👻</span><strong>Horror</strong><small>An excuse to cuddle</small>
+            </button>
+            <button class="choice-card custom-card" type="button" data-value="custom">
+              <span class="choice-icon">🎬</span><strong>Your choice</strong><small>Pick any film</small>
+            </button>
+          </div>
+          <label class="custom-input" id="film-custom-wrap" hidden>
+            <span>Which film or genre?</span>
+            <input type="text" id="film-custom" maxlength="80" placeholder="Type your movie choice...">
+          </label>
+          <p class="error-message" id="film-error" role="alert"></p>
+        </fieldset>
+
+        <button class="primary-button submit-button" type="submit">
+          See our date plan <span aria-hidden="true">♥</span>
+        </button>
+      </form>
+    </section>
+
+    <section class="summary-screen" id="summary-screen" aria-labelledby="summary-title" hidden>
+      <div class="summary-card">
+        <span class="summary-heart" aria-hidden="true">♥</span>
+        <p class="step-label">It’s a date</p>
+        <h2 id="summary-title">This sounds perfect.</h2>
+        <p>I can’t wait to spend this time with you.</p>
+        <dl class="date-summary">
+          <div><dt>When</dt><dd id="summary-when"></dd></div>
+          <div><dt>Food</dt><dd id="summary-food"></dd></div>
+          <div><dt>Film</dt><dd id="summary-film"></dd></div>
+        </dl>
+        <button class="primary-button" id="send-email" type="button">Send my choices by email</button>
+        <button class="text-button" id="edit-choices" type="button">Wait, let me change something</button>
+      </div>
+    </section>
+
+    <section class="confirmation-screen" id="confirmation-screen" aria-live="polite" hidden>
+      <div class="confirmation-card">
+        <span aria-hidden="true">♥</span>
+        <h2>Your email is ready!</h2>
+        <p>Send it from your email app, and our date is officially on its way.</p>
+        <button class="text-button" id="email-again" type="button">Open the email again</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>Made with <span aria-label="love">♥</span> for us</footer>
+  <script src="script.js"></script>
+</body>
+</html>
